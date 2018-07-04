@@ -29,6 +29,7 @@ class Router
                 $parameters = $segments;
                 $controllerFile = __DIR__ . '/../controllers/' . $controller . '.php';
                 if (file_exists($controllerFile)) {
+                    var_dump("Inside if file exists");
                     var_dump(include_once($controllerFile));
                 }
                 if (!is_callable(array($controller, $action))) {
