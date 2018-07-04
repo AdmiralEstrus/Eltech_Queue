@@ -6,7 +6,7 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        var_dump("123");
+        var_dump("Inside actionIndex");
         $db = new DbConnection();
         $currentNumber = $db->findOne(1);
 
