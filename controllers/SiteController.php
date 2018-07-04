@@ -21,6 +21,7 @@ class SiteController extends Controller
         }
 
         $this->view->generate(__DIR__ . "/../views/index.php", $currentNumber);
+        var_dump("123");
         return true;
     }
 }
