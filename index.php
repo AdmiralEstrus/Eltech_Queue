@@ -27,4 +27,3 @@ if (isset($_POST['reset'])) {
 <form action="" method="post">
     <button type="submit" name="reset">Сбросить</button>
 </form>
-z
