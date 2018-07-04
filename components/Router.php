@@ -30,7 +30,7 @@ class Router
                 $controllerFile = __DIR__ . '/../controllers/' . $controller . '.php';
                 if (file_exists($controllerFile)) {
                     var_dump("Inside if file exists");
-                    var_dump(include_once($controllerFile));
+                    var_dump(require_once($controllerFile));
                 }
                 if (!is_callable(array($controller, $action))) {
                     header("HTTP/1.0 404 Not Found");
