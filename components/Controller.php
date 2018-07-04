@@ -8,6 +8,7 @@ class Controller
 
     function __construct()
     {
+        var_dump("Heheh");
         $this->view = new View();
     }
 }
