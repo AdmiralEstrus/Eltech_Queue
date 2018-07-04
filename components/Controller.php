@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kiran
- * Date: 04.07.2018
- * Time: 4:20
- */
+
+include_once __DIR__ . "View.php";
 
 class Controller
 {
