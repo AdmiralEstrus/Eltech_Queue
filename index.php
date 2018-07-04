@@ -13,6 +13,11 @@ if (isset($_POST['reset'])) {
     $currentNumber = 0;
     mysqli_query($db, "UPDATE queue SET currentNumber = $currentNumber");
 }
+
+if (isset($_POST['prev'])) {
+    $currentNumber--;
+    mysqli_query($db, "UPDATE queue SET currentNumber = $currentNumber");
+}
 ?>
 
 <center>
@@ -26,4 +31,8 @@ if (isset($_POST['reset'])) {
 
 <form action="" method="post">
     <button type="submit" name="reset">Сбросить</button>
+</form>
+
+<form action="" method="post">
+    <button type="submit" name="prev">Назад</button>
 </form>
