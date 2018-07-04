@@ -28,29 +28,20 @@ class Router
                 $action = 'action' . ucfirst(array_shift($segments));
                 $parameters = $segments;
                 $controllerFile = __DIR__ . '/../controllers/' . $controller . '.php';
-                var_dump($controllerFile);
                 if (file_exists($controllerFile)) {
-                    var_dump("1");
                     include_once($controllerFile);
-
                 }
-                var_dump("2");
                 if (!is_callable(array($controller, $action))) {
-                    var_dump("3");
                     header("HTTP/1.0 404 Not Found");
                     return false;
                 }
-                var_dump("4");
                 $controllerObject = new $controller();
                 if (call_user_func_array(array($controllerObject, $action), $parameters)) {
-                    var_dump("5");
                     return true;
                 }
             }
         }
-        var_dump("6");
         if (file_exists(__DIR__ . "/../controllers/SiteController.php")) {
-            var_dump("7");
             include_once(__DIR__ . "/../controllers/SiteController.php");
         }
         header("HTTP/1.0 404 Not Found");

@@ -6,6 +6,7 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
+        var_dump("123");
         $db = new DbConnection();
         $currentNumber = $db->findOne(1);
 
@@ -20,7 +21,6 @@ class SiteController extends Controller
         }
 
         $this->view->generate(__DIR__ . "/../views/index.php", $currentNumber);
-        var_dump("123");
         return true;
     }
 }
