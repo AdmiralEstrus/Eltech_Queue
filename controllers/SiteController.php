@@ -1,7 +1,6 @@
 <?php
 include_once __DIR__ . "/../components/Controller.php";
 
-//include_once __DIR__ . "/../models/FindUserUrl.php";
 
 class SiteController extends Controller
 {

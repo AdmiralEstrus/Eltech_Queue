@@ -20,6 +20,7 @@ class Router
     public function run()
     {
         $url = $this->getURI();
+        var_dump($url);
         foreach ($this->routes as $pattern => $route) {
             if (preg_match("~$pattern~", $url)) {
                 $internalRoute = preg_replace("~$pattern~", $route, $url);
@@ -43,9 +44,6 @@ class Router
         }
         if (file_exists(__DIR__ . "/../controllers/SiteController.php")) {
             include_once(__DIR__ . "/../controllers/SiteController.php");
-        }
-        if (call_user_func_array(array(new SiteController(), "actionUrl"), array("site", "url"))) {
-            return true;
         }
         header("HTTP/1.0 404 Not Found");
         return false;
