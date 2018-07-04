@@ -20,7 +20,6 @@ class Router
     public function run()
     {
         $url = $this->getURI();
-        var_dump($url);
         foreach ($this->routes as $pattern => $route) {
             if (preg_match("~$pattern~", $url)) {
                 $internalRoute = preg_replace("~$pattern~", $route, $url);
@@ -29,8 +28,10 @@ class Router
                 $action = 'action' . ucfirst(array_shift($segments));
                 $parameters = $segments;
                 $controllerFile = __DIR__ . '/../controllers/' . $controller . '.php';
+                var_dump($controllerFile);
                 if (file_exists($controllerFile)) {
                     include_once($controllerFile);
+                    var_dump("controllerFile exists");
                 }
                 if (!is_callable(array($controller, $action))) {
                     header("HTTP/1.0 404 Not Found");
@@ -38,8 +39,10 @@ class Router
                 }
                 $controllerObject = new $controller();
                 if (call_user_func_array(array($controllerObject, $action), $parameters)) {
+                    var_dump("call user func array true");
                     return true;
                 }
+                var_dump("call user func array false");
             }
         }
         if (file_exists(__DIR__ . "/../controllers/SiteController.php")) {
