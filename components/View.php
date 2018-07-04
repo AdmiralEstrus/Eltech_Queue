@@ -9,6 +9,6 @@ class View
             extract($data);
         }
 
-        include __DIR__ . $contentView;
+        require __DIR__ . $contentView;
     }
 }
