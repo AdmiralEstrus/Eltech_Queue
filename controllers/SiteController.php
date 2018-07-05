@@ -51,8 +51,11 @@ class SiteController
             $this->model->updateUserInformation();
         }
 
-        if (isset($_POST['prev'])) {
+        if (isset($_POST['prev']) && $_SESSION['currentNumber'] > 0) {
+            $zeroCount = 0;
             for ($i = 1; $i <= 4; $i++) {
+                if ($_SESSION['user' . $i] == 0)
+                    $zeroCount++;
                 if ($_SESSION['user' . $i] == $_SESSION['currentNumber']) {
                     $_SESSION['currentNumber']--;
                     $_SESSION['user' . $i] = 0;
@@ -61,6 +64,10 @@ class SiteController
                     $this->model->updateUserInformation();
                     break;
                 }
+            }
+            if ($zeroCount == 4) {
+                $_SESSION['currentNumber']--;
+                $this->updateCurrentNumberInDB();
             }
         }
         require_once(__DIR__ . '/../public/views/site/index.php');
