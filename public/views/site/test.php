@@ -20,19 +20,19 @@
         <table>
             <tr>
                 <form action="" method="post">
-                    <button id="1" class="Next" type="submit" name="next" onclick="change_color(this)"><h1>1</h1></button>
+                    <button id="1" class="Next" type="submit" name="next1" onclick="change_color(this)"><h1><?= $_SESSION['user1'] ?></h1></button>
                 </form>
 
                 <form action="" method="post">
-                    <button id="2" class="Next" type="submit" name="next"><h1>2</h1></button>
+                    <button id="2" class="Next" type="submit" name="next2"><h1><?= $_SESSION['user2'] ?></h1></button>
                 </form>
 
                 <form action="" method="post">
-                    <button id="3" class="Next" type="submit" name="next"><h1>3</h1></button>
+                    <button id="3" class="Next" type="submit" name="next3"><h1><?= $_SESSION['user3'] ?></h1></button>
                 </form>
 
                 <form action="" method="post">
-                    <button id="4" class="Next" type="submit" name="next"><h1>4</h1></button>
+                    <button id="4" class="Next" type="submit" name="next4"><h1><?= $_SESSION['user4'] ?></h1></button>
                 </form>
             </tr>
         </table>
