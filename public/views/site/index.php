@@ -37,12 +37,6 @@
 
     <div id="Navigation">
         <table>
-            <!--            <tr>-->
-            <!--                <form action="" method="post" id="next">-->
-            <!--                    <button type="submit" name="next" class="btn">Следующий</button>-->
-            <!--                </form>-->
-            <!--            </tr>-->
-            <!--            <br>-->
             <tr>
                 <form action="" method="post">
                     <button class="btn" type="submit" name="prev">Назад</button>

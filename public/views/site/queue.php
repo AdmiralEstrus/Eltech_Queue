@@ -21,9 +21,9 @@
         <h1>Текущий номер:</font></h1> <br>
         <h1 style="font-size: 1400%; margin-top: -55px"><?= $_SESSION['currentNumber'] ?></h1>
 
-        <h1 id="Attention" style="margin-top: -30px"><font color="red">Внимание! Подготовьте документы заранее! </font>
+        <h1 id="Attention" style="margin-top: -30px"><font color="#043C6B">Внимание! Подготовьте документы заранее! </font>
         </h1>
-        <h1 id="Documents"><font color="red">(Копия паспорта, аттестата и приложения)</font></h1>
+        <h1 id="Documents"><font color="#043C6B">(Копия паспорта, аттестата и приложения)</font></h1>
     </div>
 
     <div id="buttons">

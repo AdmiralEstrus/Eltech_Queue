@@ -30,6 +30,13 @@ class Number
         $result->execute();
     }
 
+    public function resetUserCurrentNumber()
+    {
+        for ($i = 1; $i <= 4; $i++) {
+            $this->setUserCurrentNumber(0, $i);
+        }
+    }
+
     public function getUserCurrentNumber($userID)
     {
         $resultArray = $this->getQueueInformation();
@@ -47,5 +54,13 @@ class Number
 
         $resultArray = $result->fetch(PDO::FETCH_ASSOC);
         return $resultArray;
+    }
+
+    public function updateUserInformation()
+    {
+        $_SESSION['user1'] = $this->getUserCurrentNumber(1);
+        $_SESSION['user2'] = $this->getUserCurrentNumber(2);
+        $_SESSION['user3'] = $this->getUserCurrentNumber(3);
+        $_SESSION['user4'] = $this->getUserCurrentNumber(4);
     }
 }
