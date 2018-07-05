@@ -80,18 +80,4 @@ class SiteController
 
         require_once(__DIR__ . '/../public/views/site/queue.php');
     }
-
-    public function actionTest()
-    {
-        $_SESSION['currentNumber'] = $this->model->getCurrentNumber();
-        require_once(__DIR__ . '/../public/views/site/test.php');
-    }
-
-    public function actionTestshow()
-    {
-        $_SESSION['currentNumber'] = $this->model->getCurrentNumber();
-        require_once(__DIR__ . '/../public/views/site/test_show.php');
-    }
-
-
 }
