@@ -50,11 +50,11 @@
 </div>
 
 <script>
-    function updatePage() {
-        location.reload()
-    }
-    setInterval(updatePage(), 1000);
-
+    $(document).ready(function() {
+        setInterval(function() {
+            location.reload()
+        }, 250);
+    });
 </script>
 </body>
 </html>
