@@ -31,4 +31,18 @@ class SiteController
         $_SESSION['currentNumber'] = $model->getCurrentNumber();
         require_once(__DIR__ . '/../public/views/site/queue.php');
     }
+
+    public function actionTest()
+    {
+        $model = new Number();
+        $_SESSION['currentNumber'] = $model->getCurrentNumber();
+        require_once(__DIR__ . '/../public/views/site/test.php');
+    }
+
+    public function actionTestshow()
+    {
+        $model = new Number();
+        $_SESSION['currentNumber'] = $model->getCurrentNumber();
+        require_once(__DIR__ . '/../public/views/site/test_show.php');
+    }
 }

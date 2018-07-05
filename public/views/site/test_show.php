@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd"><!
+        "http://www.w3.org/TR/html4/loose.dtd"><!
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,20 +19,13 @@
 <div class="container">
     <div id="Information">
         <h1>Текущий номер:</font></h1> <br>
-<!--        <h1 style="font-size: 1400%; margin-top: -55px">--><?//= $_SESSION['currentNumber'] ?><!--</h1>-->
+        <h1 style="font-size: 1400%; margin-top: -55px"><?= $_SESSION['currentNumber'] ?></h1>
 
         <h1 id="Attention" style="margin-top: -30px"><font color="red">Внимание! Подготовьте документы заранее! </font>
         </h1>
-        <h1 id="Documents"><font color="red"><font size="30px"(Копия паспорта, аттестата и приложения)</font></h1>
+        <h1 id="Documents"><font color="red">(Копия паспорта, аттестата и приложения)</font></h1>
     </div>
 </div>
 
-<script>
-    function updatePage() {
-        location.reload()
-    }
-    setInterval(updatePage(), 1000);
-
-</script>
 </body>
 </html>
