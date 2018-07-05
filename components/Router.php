@@ -93,8 +93,8 @@ class Router
                 }
             }
         } catch (HttpException $httpException) {
-            $controllerObject = new ErrorController();
-            $controllerObject->actionError($httpException->getCode(), $httpException->getMessage());
+//            $controllerObject = new ErrorController();
+//            $controllerObject->actionError($httpException->getCode(), $httpException->getMessage());
         }
         return false;
     }

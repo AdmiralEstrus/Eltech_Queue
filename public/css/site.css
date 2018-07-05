@@ -1,0 +1,29 @@
+.currentNumber {
+    text-align: center;
+    font-size: 100px;
+}
+
+#numberElement {
+    font-size: 300px;
+}
+
+.buttons {
+    /*margin-top: 25%;*/
+}
+
+.btn {
+    border: none;
+    padding: 16px 32px;
+    background-color: #008CBA;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #00ACCA;
+}
