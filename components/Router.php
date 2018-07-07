@@ -1,17 +1,26 @@
 <?php
 require __DIR__ . "/../exceptions/HttpNotFoundException.php";
 require __DIR__ . "/../controllers/ErrorController.php";
+
 class Router
 {
     /**
-     * @param $routes - содержит путь к файлу routes.php, где определены все пути
+     * Содержит путь к файлу routes.php, где определены все пути
+     * @var $routes
      */
     private $routes;
+
+
+    /**
+     * Router конструктор - подключается список возможных rout'ов.
+     */
     public function __construct()
     {
         $routesPath = __DIR__ . '/../config/routes.php';
         $this->routes = include($routesPath);
     }
+
+
     /**
      * Возвращает строку с адресом страницы
      * @return string
@@ -21,15 +30,19 @@ class Router
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
         }
+        return false;
     }
+
+
+    /**
+     * Запустить работу
+     */
     public function run()
     {
         /**
          * @param uri - получат строку запроса из функции @see getURI()
          */
         $uri = $this->getURI();
-        // For local testing
-        $uri = str_replace("Eltech_Queue", "", $uri);
         /**
          * Ищем наш запрос в routes.php
          */
@@ -78,7 +91,7 @@ class Router
                      * @param $controllerObject - создаем объект типа класса, в соответствии с  нашим адресом
                      */
                     $controllerObject = new $controllerName();
-                    /** @param $result - получает значение функции call_user_func_array,
+                    /** @var $result - получает значение функции call_user_func_array,
                      * в котором мы в функцию @param $actionName
                      * метода @param $controllerObject
                      * передаем наши параметры @param $parameters
@@ -89,12 +102,13 @@ class Router
                      */
                     if ($result) {
                         return true;
-                    }
+                    } else
+                        return false;
                 }
             }
         } catch (HttpException $httpException) {
-//            $controllerObject = new ErrorController();
-//            $controllerObject->actionError($httpException->getCode(), $httpException->getMessage());
+            $controllerObject = new ErrorController();
+            $controllerObject->actionError($httpException->getCode(), $httpException->getMessage());
         }
         return false;
     }

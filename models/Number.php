@@ -2,65 +2,96 @@
 
 class Number
 {
+    /**
+     * Экземляр элемента базы данных
+     * @var $db
+     */
     private $db;
 
+
+    /**
+     * Number конструктор, устанавливает соединение с БД.
+     */
     public function __construct()
     {
         $this->db = Db::getConnection();
     }
 
-    public function getCurrentNumber()
-    {
-        $resultArray = $this->getQueueInformation();
-        $currentNumber = $resultArray['currentNumber'];
-        return $currentNumber;
-    }
 
-    public function setCurrentNumber($currentNumber)
+    /**
+     * Получить информацию из базы данных
+     * @param $tableName - имя таблицы
+     * @param int $id - id строки в БД
+     * @return mixed - массив с информацией
+     */
+    private function selectInformationFromDB($tableName, $id)
     {
-        $result = $this->db->prepare("UPDATE queue SET currentNumber = :currentNumber");
-        $result->bindParam(":currentNumber", $currentNumber, PDO::PARAM_INT);
+        $result = $this->db->prepare("SELECT * FROM $tableName WHERE id = $id");
         $result->execute();
-    }
-
-    public function setUserCurrentNumber($currentNumber, $userID)
-    {
-        $result = $this->db->prepare("UPDATE queue SET user" . $userID . "= :currentNumber");
-        $result->bindParam(":currentNumber", $currentNumber, PDO::PARAM_INT);
-        $result->execute();
-    }
-
-    public function resetUserCurrentNumber()
-    {
-        for ($i = 1; $i <= 4; $i++) {
-            $this->setUserCurrentNumber(0, $i);
-        }
-    }
-
-    public function getUserCurrentNumber($userID)
-    {
-        $resultArray = $this->getQueueInformation();
-        $currentNumber = $resultArray['user' . $userID];
-        return $currentNumber;
-    }
-
-    private function getQueueInformation()
-    {
-        $id = 1;
-
-        $result = $this->db->prepare("SELECT * FROM queue WHERE id = :id");
-        $result->bindParam(":id", $id, PDO::PARAM_INT);
-        $result->execute();
-
         $resultArray = $result->fetch(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 
-    public function updateUserInformation()
+
+    /**
+     * Вызывает метод и собирает информацию из базы данных
+     * @param int $id - id строки в БД
+     * @return mixed - массив с информацией
+     */
+    public function getQueueInformation($id = 1)
     {
-        $_SESSION['user1'] = $this->getUserCurrentNumber(1);
-        $_SESSION['user2'] = $this->getUserCurrentNumber(2);
-        $_SESSION['user3'] = $this->getUserCurrentNumber(3);
-        $_SESSION['user4'] = $this->getUserCurrentNumber(4);
+        $queueInformation = $this->selectInformationFromDB("queue", $id);
+        return $queueInformation;
+    }
+
+
+    /**
+     * Обновить информацию в БД
+     * @param $tableName - имя таблицы, в которой изменяется информация
+     * @param $fieldName - имя изменяемого поля
+     * @param $fieldValue - значение поля
+     * @param $id - id строки в БД
+     */
+    private function updateInformationInDB($tableName, $fieldName, $fieldValue, $id)
+    {
+        $result = $this->db->prepare("UPDATE $tableName SET $fieldName = $fieldValue WHERE id = $id");
+        $result->execute();
+    }
+
+
+    /**
+     * Установить новое значение currentNumber в БД
+     * @param $currentNumber - устанавливаемое значение. Если не задано, то берется из сессии
+     * @param int $id - id строки в БД
+     */
+    public function setCurrentNumber($currentNumber, $id = 1)
+    {
+        $this->updateInformationInDB("queue", "currentNumber", $currentNumber, $id);
+    }
+
+
+    /**
+     * Обновить текущий номер у пользователя в БД
+     * @param $number - обновляемое значение
+     * @param $userID - номер пользователя
+     * @param int $id - id строки в БД
+     */
+    public function setUserNumber($number, $userID, $id = 1)
+    {
+        $this->updateInformationInDB("queue", "user" . $userID, $number, $id);
+    }
+
+
+    /**
+     * Обновить информацию о всех элементах из БД и записать ее в сессию
+     * @param int $id - id строки в БД
+     */
+    public function updateSiteInfo($id = 1)
+    {
+        $informationArray = $this->selectInformationFromDB("queue", $id);
+        $_SESSION['user1'] = $informationArray['user1'];
+        $_SESSION['user2'] = $informationArray['user2'];
+        $_SESSION['user3'] = $informationArray['user3'];
+        $_SESSION['user4'] = $informationArray['user4'];
     }
 }
