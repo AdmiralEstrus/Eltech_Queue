@@ -11,7 +11,7 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <title>ФКТИ | Электронная очередь</title>
     <link rel="icon" type="image/png" sizes="96x96" href="/public/image/favicon-96x96.png">
-    <link rel="stylesheet" href="/public/css/site.css">
+    <link rel="stylesheet" href="/public/css/queue.css">
 </head>
 
 <body>

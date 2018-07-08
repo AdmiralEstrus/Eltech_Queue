@@ -94,4 +94,36 @@ class Number
         $_SESSION['user3'] = $informationArray['user3'];
         $_SESSION['user4'] = $informationArray['user4'];
     }
+
+    /**
+     * Добавляет нового пользователя
+     * @param int $id - id строки в БД
+     * @return bool - удалось ли добавить нового пользователя
+     */
+    public function setNewUser($id = 1)
+    {
+        $userID = $_POST['userID'];
+
+        $queueInformation = $this->getQueueInformation();
+        if ($queueInformation['user' . $userID . "ID"] == $userID) {
+            $_SESSION['errorMessage'] = "Пользователь с таким ID уже авторизован!";
+            return false;
+        }
+
+        $_SESSION['systemAdminID'] = $userID;
+        $this->updateInformationInDB("queue", "user" . $userID . "ID", $userID, $id);
+        return true;
+    }
+
+    /**
+     * Выполняется выход из системы для пользователя
+     * @param int $id - id строки в БД
+     */
+    public function removeUser($id = 1)
+    {
+        $userID = $_SESSION['systemAdminID'];
+        $this->updateInformationInDB("queue", "user" . $userID . "ID", 0, $id);
+        unset($_SESSION['currentNumber']);
+        unset($_SESSION['systemAdminID']);
+    }
 }

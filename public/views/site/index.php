@@ -7,46 +7,47 @@
 
 <body>
 <div class="container">
-    <div id="Information">
-        <h1>Текущий номер:</font></h1> <br>
-        <h1 style="font-size: 1400%; margin-top: -55px"><?= $_SESSION['currentNumber'] ?></h1>
-    </div>
+    <h1>Текущий номер очереди: <?= $_SESSION['currentNumber'] . "<br>" ?></h1>
 
-    <div id="buttons">
-        <table>
+
+    <div class="buttons">
+        <table class="queueInfo">
             <tr>
-                <form action="" method="post">
-                    <button id="1" class="Next" type="submit" name="next1" onclick="change_color(this)">
-                        <h1><?= $_SESSION['user1'] ?></h1></button>
-                </form>
-
-                <form action="" method="post">
-                    <button id="2" class="Next" type="submit" name="next2"><h1><?= $_SESSION['user2'] ?></h1></button>
-                </form>
-
-                <form action="" method="post">
-                    <button id="3" class="Next" type="submit" name="next3"><h1><?= $_SESSION['user3'] ?></h1></button>
-                </form>
-
-                <form action="" method="post">
-                    <button id="4" class="Next" type="submit" name="next4"><h1><?= $_SESSION['user4'] ?></h1></button>
-                </form>
+                <?php
+                for ($i = 1; $i <= 4; $i++)
+                    if ($_SESSION['systemAdminID'] == $i)
+                        echo "<td><div class='currentQueue Next'>Оператор #" . $i . " <b>(Вы)</b>: " . $_SESSION['user' . $i] . "</td></div>";
+                    else
+                        echo "<td><div class='currentQueue Next'>Оператор #" . $i . ": " . $_SESSION['user' . $i] . "</td></div>";
+                ?>
             </tr>
         </table>
     </div>
+
+    <tr>
+        <form action="" method="post" style="text-align:center;">
+            <button class="btn next-btn" name="next">Следующий</button>
+        </form>
+    </tr>
 
     <div id="Navigation">
         <table>
             <tr>
                 <form action="" method="post">
-                    <button class="btn" type="submit" name="prev">Назад</button>
+                    <button class="btn" name="prev">Назад</button>
                 </form>
 
             </tr>
             <br>
             <tr>
                 <form action="" method="post">
-                    <button class="btn" type="submit" name="reset">Сбросить</button>
+                    <button class="btn" name="reset">Сбросить</button>
+                </form>
+            </tr>
+            <br>
+            <tr>
+                <form action="" method="post">
+                    <button class="btn" name="logout">Выйти</button>
                 </form>
             </tr>
         </table>

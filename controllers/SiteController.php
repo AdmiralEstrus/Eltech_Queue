@@ -32,11 +32,11 @@ class SiteController
 
     /**
      * Установить новое значение для пользователя
-     * @param $userID - id пользователя, которому установить новое значение
      */
-    private function setUserNextNumber($userID)
+    private function setNextNumber()
     {
         $_SESSION['currentNumber']++;
+        $userID = $_SESSION['systemAdminID'];
         $this->model->setUserNumber($_SESSION['currentNumber'], $userID);
         $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
     }
@@ -46,29 +46,30 @@ class SiteController
      */
     public function actionIndex()
     {
+        if (!isset($_SESSION['systemAdminID'])) {
+            header("Location: /authorization");
+            exit();
+        }
+
         $siteInformation = $this->model->getQueueInformation();
         $_SESSION['currentNumber'] = $siteInformation['currentNumber'];
         $this->model->updateSiteInfo();
 
-        if (isset($_POST['next1'])) {
-            $this->setUserNextNumber(1);
+        if (isset($_POST['next'])) {
+            $this->setNextNumber();
         }
-        if (isset($_POST['next2'])) {
-            $this->setUserNextNumber(2);
-        }
-        if (isset($_POST['next3'])) {
-            $this->setUserNextNumber(3);
-        }
-        if (isset($_POST['next4'])) {
-            $this->setUserNextNumber(4);
-        }
-
 
         if (isset($_POST['reset'])) {
             $_SESSION['currentNumber'] = 0;
             for ($i = 1; $i <= 4; $i++)
                 $this->model->setUserNumber(0, $i);
             $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
+        }
+
+        if (isset($_POST['logout'])) {
+            $this->model->removeUser();
+            header("Location: /authorization");
+            exit();
         }
 
         if (isset($_POST['prev']) && $_SESSION['currentNumber'] > 0) {
@@ -104,5 +105,24 @@ class SiteController
         $this->model->updateSiteInfo();
 
         require_once(__DIR__ . '/../public/views/site/queue.php');
+    }
+
+    /**
+     * Отображает страницу авторизации
+     */
+    public function actionAuthorization()
+    {
+        if (isset($_SESSION['systemAdminID'])) {
+            header("Location: /");
+            exit();
+        }
+
+        if (isset($_POST['userID'])) {
+            $this->model->setNewUser();
+            header("Location: /");
+            exit();
+        }
+
+        require_once(__DIR__ . '/../public/views/site/authorization.php');
     }
 }
