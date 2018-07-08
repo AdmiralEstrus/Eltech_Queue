@@ -26,9 +26,13 @@ h1 {
 }
 
 #Navigation {
-    margin-top: 150px;
+    margin-top: 50px;
     margin-bottom: 10px;
     margin-left: 40px;
+}
+
+#Navigation:nth-last-child {
+    margin-bottom: 0;
 }
 
 .btn {
@@ -58,7 +62,7 @@ h1 {
 }
 
 .next-btn {
-    margin-top: 100px;
+    margin-top: 75px;
     width: 500px;
     padding: 20px 32px;
     font-size: 20px;
