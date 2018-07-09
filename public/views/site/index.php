@@ -14,7 +14,7 @@
         <table class="queueInfo">
             <tr>
                 <?php
-                for ($i = 1; $i <= 4; $i++)
+                for ($i = 1; $i <= 5; $i++)
                     if ($_SESSION['systemAdminID'] == $i)
                         echo "<td><div class='currentQueue Next'>Оператор #" . $i . " <b>(Вы)</b>: " . $_SESSION['user' . $i] . "</td></div>";
                     else

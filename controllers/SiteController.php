@@ -9,6 +9,7 @@ class SiteController
      * @var $model
      */
     private $model;
+    private $adminCount = 5;
 
 
     /**
@@ -61,7 +62,7 @@ class SiteController
 
         if (isset($_POST['reset'])) {
             $_SESSION['currentNumber'] = 0;
-            for ($i = 1; $i <= 4; $i++)
+            for ($i = 1; $i <= $this->adminCount; $i++)
                 $this->model->setUserNumber(0, $i);
             $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
         }
@@ -75,7 +76,7 @@ class SiteController
         if (isset($_POST['prev']) && $_SESSION['currentNumber'] > 0) {
             $zeroCount = 0;
             $notMatched = 0;
-            for ($i = 1; $i <= 4; $i++) {
+            for ($i = 1; $i <= $this->adminCount; $i++) {
                 if ($_SESSION['user' . $i] == 0)
                     $zeroCount++;
                 if ($_SESSION['user' . $i] == $_SESSION['currentNumber']) {
@@ -87,7 +88,7 @@ class SiteController
                 } else
                     $notMatched++;
             }
-            if ($zeroCount == 4 or $notMatched == 4) {
+            if ($zeroCount == $this->adminCount or $notMatched == $this->adminCount) {
                 $_SESSION['currentNumber']--;
                 $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
             }

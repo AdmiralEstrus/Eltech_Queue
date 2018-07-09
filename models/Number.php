@@ -93,6 +93,7 @@ class Number
         $_SESSION['user2'] = $informationArray['user2'];
         $_SESSION['user3'] = $informationArray['user3'];
         $_SESSION['user4'] = $informationArray['user4'];
+        $_SESSION['user5'] = $informationArray['user5'];
     }
 
     /**

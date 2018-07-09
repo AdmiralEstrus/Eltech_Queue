@@ -10,7 +10,7 @@
     background: white;
     color: black;
     border: 1px solid #0B5FA5;
-    margin-left: 130px;
+    margin-left: 30px;
     cursor: pointer;
 }
 
@@ -56,4 +56,16 @@ h1 {
 
 .btn:hover {
     background-color: #00ACCA;
+}
+
+.thisRoom {
+    float: left;
+    text-align: center;
+}
+
+.nextRoom {
+    float: right;
+    text-align: center;
+    margin-right: 100px;
+    /*margin-left: 500px;*/
 }
