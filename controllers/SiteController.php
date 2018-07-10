@@ -120,6 +120,7 @@ class SiteController
      */
     public function actionAuthorization()
     {
+        $this->model->updateSiteInfo();
         if (isset($_SESSION['systemAdminID'])) {
             header("Location: /");
             exit();
