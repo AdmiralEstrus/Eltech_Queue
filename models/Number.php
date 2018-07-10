@@ -94,6 +94,7 @@ class Number
         $_SESSION['user3'] = $informationArray['user3'];
         $_SESSION['user4'] = $informationArray['user4'];
         $_SESSION['user5'] = $informationArray['user5'];
+        $_SESSION['enableRoom'] = $informationArray['enableRoom'];
     }
 
     /**
@@ -111,5 +112,16 @@ class Number
     {
         unset($_SESSION['currentNumber']);
         unset($_SESSION['systemAdminID']);
+    }
+
+    public function switchFifthPC($id = 1)
+    {
+        $enableRoom = $_SESSION['enableRoom'];
+        if ($enableRoom == 1)
+            $enableRoom = 0;
+        else
+            $enableRoom = 1;
+        $this->updateInformationInDB("queue", "enableRoom", $enableRoom, $id);
+        $_SESSION['enableRoom'] = $enableRoom;
     }
 }

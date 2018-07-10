@@ -50,6 +50,18 @@
                     <button class="btn" name="logout">Выйти</button>
                 </form>
             </tr>
+            <br>
+            <tr>
+                <form action="" method="post">
+                    <?php if ($_SESSION['enableRoom'] == 1) { ?>
+                        <button class="btn" name="add">Выключить 5 компьютер</button>
+                    <?php } else { ?>
+                        <button class="btn" name="add">Включить 5 компьютер</button>
+                    <?php } ?>
+                </form>
+
+            </tr>
+
         </table>
     </div>
 </div>

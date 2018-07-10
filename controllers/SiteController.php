@@ -73,6 +73,10 @@ class SiteController
             exit();
         }
 
+        if (isset($_POST['add'])) {
+            $this->model->switchFifthPC();
+        }
+
         if (isset($_POST['prev']) && $_SESSION['currentNumber'] > 0) {
             $zeroCount = 0;
             $notMatched = 0;
@@ -105,7 +109,10 @@ class SiteController
         $_SESSION['currentNumber'] = $siteInformation['currentNumber'];
         $this->model->updateSiteInfo();
 
-        require_once(__DIR__ . '/../public/views/site/queue.php');
+        if ($_SESSION['enableRoom'] == 1)
+            require_once(__DIR__ . '/../public/views/site/queue_enable.php');
+        else
+            require_once(__DIR__ . '/../public/views/site/queue_disable.php');
     }
 
     /**

@@ -1,0 +1,59 @@
+.container {
+    width: 100%;
+    height: 165px;
+    margin-top: 40px;
+}
+
+.Next {
+    width: 170px;
+    height: 170px;
+    background: white;
+    color: black;
+    border: 1px solid #0B5FA5;
+    margin-left: 130px;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    font-size: 400%;
+}
+
+#Attention {
+    font-style: italic;
+    font-size: 350%;
+}
+
+#Documents {
+    font-style: italic;
+    font-size: 300%;
+    margin-top: -20px;
+}
+
+#Information {
+    width: 100%;
+
+}
+
+#Navigation {
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    border: none;
+    padding: 16px 32px;
+    background-color: #008CBA;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+
+}
+
+.btn:hover {
+    background-color: #00ACCA;
+}
