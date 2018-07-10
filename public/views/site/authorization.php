@@ -25,7 +25,9 @@
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
-                <option>5</option>
+                <?php if ($_SESSION['enableRoom'] == 1) { ?>
+                    <option>5</option>
+                <?php } ?>
             </select>
             <button name="setNewUser">Войти</button>
         </form>

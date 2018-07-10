@@ -1,3 +1,10 @@
+<?php
+$adminNumbers = 4;
+if ($_SESSION['enableRoom'] == 1) {
+    $adminNumbers = 5;
+}
+?>
+
 <html>
 <head>
     <title>ФКТИ | Электронная очередь</title>
@@ -14,7 +21,7 @@
         <table class="queueInfo">
             <tr>
                 <?php
-                for ($i = 1; $i <= 5; $i++)
+                for ($i = 1; $i <= $adminNumbers; $i++)
                     if ($_SESSION['systemAdminID'] == $i)
                         echo "<td><div class='currentQueue Next'>Оператор #" . $i . " <b>(Вы)</b>: " . $_SESSION['user' . $i] . "</td></div>";
                     else
