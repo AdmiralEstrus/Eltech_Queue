@@ -54,7 +54,7 @@
     </div>
 
     <div class="nextRoom">
-        <h3>Аудитория 5335 (соседняя)</h3>
+        <h3>Аудитория 5226 (соседняя)</h3>
         <div id="buttons">
             <table>
                 <tr>
@@ -66,7 +66,7 @@
             </table>
         </div>
     </div>
-    <script>
+    <script type="javascript">
         $(document).ready(function () {
             setInterval(function () {
                 location.reload()
