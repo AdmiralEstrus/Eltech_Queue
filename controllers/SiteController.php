@@ -36,10 +36,13 @@ class SiteController
      */
     private function setNextNumber()
     {
-        $_SESSION['currentNumber']++;
-        $userID = $_SESSION['systemAdminID'];
-        $this->model->setUserNumber($_SESSION['currentNumber'], $userID);
-        $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
+        $queueInformation = $this->model->getQueueInformation();
+        if ($_SESSION['currentNumber'] < $queueInformation['takenNumber']) {
+            $_SESSION['currentNumber']++;
+            $userID = $_SESSION['systemAdminID'];
+            $this->model->setUserNumber($_SESSION['currentNumber'], $userID);
+            $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
+        }
     }
 
     /**
