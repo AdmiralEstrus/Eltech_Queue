@@ -95,6 +95,7 @@ class Number
         $_SESSION['user4'] = $informationArray['user4'];
         $_SESSION['user5'] = $informationArray['user5'];
         $_SESSION['enableRoom'] = $informationArray['enableRoom'];
+        $_SESSION['nextNumber'] = $informationArray['takenNumber'];
     }
 
     /**
@@ -123,5 +124,25 @@ class Number
             $enableRoom = 1;
         $this->updateInformationInDB("queue", "enableRoom", $enableRoom, $id);
         $_SESSION['enableRoom'] = $enableRoom;
+    }
+
+    /**
+     * Выдать следующий номер посетителю
+     * @param int $id
+     * @return int
+     */
+    public function reserveNextNumber($id = 1) {
+        $queueInformation = $this->getQueueInformation($id);
+        $nextNumber = (int) ($queueInformation['takenNumber']) + 1;
+        $this->updateInformationInDB("queue", "takenNumber", $nextNumber, $id);
+        return $nextNumber;
+    }
+
+    /**
+     * Сбросить счетчик следующего номера
+     * @param int $id
+     */
+    public function resetNextNumber($id = 1) {
+        $this->updateInformationInDB("queue", "takenNumber", 0, $id);
     }
 }

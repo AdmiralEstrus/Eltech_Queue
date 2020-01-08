@@ -14,7 +14,9 @@ if ($_SESSION['enableRoom'] == 1) {
 
 <body>
 <div class="container">
-    <h1>Текущий номер очереди: <?= $_SESSION['currentNumber'] . "<br>" ?></h1>
+    <h1>Текущий номер очереди: <?= $_SESSION['currentNumber']?><br></h1>
+
+    <h1>Последний выданный номер: <?= $_SESSION['nextNumber']?><br></h1>
 
 
     <div class="buttons">

@@ -54,6 +54,7 @@ class SiteController
 
         $siteInformation = $this->model->getQueueInformation();
         $_SESSION['currentNumber'] = $siteInformation['currentNumber'];
+        $_SESSION['nextNumber'] = $siteInformation['takenNumber'];
         $this->model->updateSiteInfo();
 
         if (isset($_POST['next'])) {
@@ -64,6 +65,7 @@ class SiteController
             $_SESSION['currentNumber'] = 0;
             for ($i = 1; $i <= $this->adminCount; $i++)
                 $this->model->setUserNumber(0, $i);
+            $this->model->resetNextNumber();
             $this->setCurrentNumberAndUpdate($_SESSION['currentNumber']);
         }
 
@@ -133,5 +135,16 @@ class SiteController
         }
 
         require_once(__DIR__ . '/../public/views/site/authorization.php');
+    }
+
+    /**
+     * Отображает страницу получения номерка
+     */
+    public function actionNumber() {
+        if (isset($_POST['getNumber'])) {
+            $_SESSION['nextNumber'] = $this->model->reserveNextNumber();
+        }
+
+        require_once(__DIR__ . '/../public/views/site/number.php');
     }
 }
